@@ -6,13 +6,6 @@ client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 
 def get_model():
-    try:
-        models = [m.name for m in client.models.list()]
-        final_model = next((m for m in models if '1.5-flash-8b' in m), None)
-        if not final_model:
-            final_model = next((m for m in models if '1.5-flash' in m and '2.' not in m), models[0])
-        return final_model.replace('models/', '')
-    except:
         return "gemini-1.5-flash"
 
 def process_lesson(topic, level, extra, length, action, assessment_type, historical_context="", notes_text="", user_query=""):
@@ -77,4 +70,5 @@ def generate_study_plan(performance_data, syllabus_text=""):
         response = client.models.generate_content(model=final_model, contents=prompt)
         return response.text
     except Exception as e:
+
         return f"AI Service Exception: {e}"
