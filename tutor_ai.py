@@ -6,7 +6,7 @@ client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 
 def get_model():
-        return "gemini-1.5-flash"
+        return "gemini-2.5-flash-lite"
 
 def process_lesson(topic, level, extra, length, action, assessment_type, historical_context="", notes_text="", user_query=""):
     try:
@@ -72,3 +72,4 @@ def generate_study_plan(performance_data, syllabus_text=""):
     except Exception as e:
 
         return f"AI Service Exception: {e}"
+
